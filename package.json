@@ -1,0 +1,14 @@
+{
+  "name": "gtmtester",
+  "version": "1.0.0",
+  "description": "Projeto para testar a implementação de tags no GTM",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Lucas Tonetto Firmo",
+  "license": "ISC",
+  "dependencies": {
+    "electron": "^6.0.1"
+  }
+}
