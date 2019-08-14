@@ -5,5 +5,5 @@ const options = ['Iniciar', 'Parar'];
 playPauseBtn.addEventListener('click', () => {
     options.reverse();
     playPauseText.textContent = options[0];
-    playPauseBtn.setAttribute('src', `../imgs/${options[0]}.svg`);
+    playPauseBtn.setAttribute('src', `imgs/${options[0]}.svg`);
 });

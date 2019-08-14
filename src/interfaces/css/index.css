@@ -6,9 +6,9 @@ body {
 .about {
     width: 50px;
     height: auto;
-    position: absolute;
-    right: 20px;
-    top: 20px;
+    float: right;
+    padding-top: 10px;
+    padding-right: 10px;
 }
 
 .btn:hover {
@@ -16,8 +16,12 @@ body {
 }
 
 .logo {
-    margin: 70px auto 20px auto;
+    margin: 0 auto 20px auto;
     display: block;
+    padding-left: 60px;
+    padding-top: 20px;
+    width: 100px;
+    height: auto;
 }
 
 .opcoes {
