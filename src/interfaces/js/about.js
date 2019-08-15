@@ -7,8 +7,6 @@ const versions = process.versions;
 
 const github = document.querySelector('.github');
 
-console.log(versions);
-
 window.onload = () => {
     nodeVersion.textContent = versions.node;
     electronVersion.textContent = versions.electron;
