@@ -21,12 +21,13 @@ app.on('ready', () => {
 ipcMain.on('open-window-about', () => {
     const windowAbout = new BrowserWindow({
         width: 600,
-        height: 500,
+        height: 540,
         //frame: false,
         webPreferences: {
             nodeIntegration: true
         }
     });
-    Menu.setApplicationMenu(new Menu());
     windowAbout.loadURL(`file://${__dirname}/src/interfaces/about.html`);
 });
+
+//ipcMain.on('open-github', () => shell.openExternal('https://github.com/LucasTonetto/gtm_tester'));
