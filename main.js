@@ -29,5 +29,3 @@ ipcMain.on('open-window-about', () => {
     });
     windowAbout.loadURL(`file://${__dirname}/src/interfaces/about.html`);
 });
-
-//ipcMain.on('open-github', () => shell.openExternal('https://github.com/LucasTonetto/gtm_tester'));
