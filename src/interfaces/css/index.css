@@ -94,10 +94,10 @@ body {
     margin: 0 auto;
     border: 2px solid #91afdf;
     border-radius: 10px;
+    width: 200px;
 }
 
 .insert-gtm div {
-    margin: 0!important;
     height: inherit;
 }
 
@@ -129,6 +129,7 @@ ul {
     margin-top: 10px;
     margin-bottom: 10px;
     list-style: none;
+    padding-left: 0;
 }
 
 li {
