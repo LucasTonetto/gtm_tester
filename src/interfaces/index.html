@@ -10,8 +10,25 @@
 </head>
 <body>
     
-    <img src="imgs/about.svg" class="about btn">
-    <img src="imgs/logo.png" class="logo">
+    <div class="about-container">
+            <div class="row about btn">
+                <div class="col-2 about-btn">
+                    <img src="imgs/insert.svg" class="insert">
+                </div>
+                <div class="col-10 about-text">
+                    <p>Sobre</p>
+                </div>
+            </div>
+        </div>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-12 div-img">
+                <img src="imgs/logo.png" class="logo">
+            </div>
+        </div>
+    </div>
+    
 
     <div class="container">
         <div class="row opcoes">
@@ -25,14 +42,23 @@
     </div>
     
     <div class="container">
-        <div class="row insert-gtm btn">
-            <div class="col-2 area-img">
-                <img src="imgs/insert.svg" class="insert">
+        <div class="row insert-gtm">
+            <div class="col-12">
+                <ul>
+                    <li>
+                        <p>Site 1</p>
+                        <p class="insert-gtm-text"><span>(Inserir GTM)</span></p>
+                    </li>
+                    <li>
+                        <p>E-commerce</p>
+                        <p class="insert-gtm-text"><span>(Inserir GTM)</span></p>
+                    </li>
+                    <li>
+                        <p>SPA</p>
+                        <p class="insert-gtm-text"><span>(Inserir GTM)</span></p>
+                    </li>
+                </ul>
             </div>
-            <div class="col-4 area-texto">
-                <p>Inserir GTM</p>
-            </div>
-        </div>
     </div>
 
     <script src="js/index.js"></script>
