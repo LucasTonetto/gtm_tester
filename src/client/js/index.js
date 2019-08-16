@@ -3,7 +3,7 @@ const {ipcRenderer} = require('electron');
 const aboutBtn = document.querySelector('.row.about.btn');
 const playPauseBtn = document.querySelector('.play-pause');
 const playPauseText = document.querySelector('.barra-opcoes p');
-const options = ['Iniciar', 'Parar'];
+let options = ['Iniciar', 'Parar'];
 
 const togglePlayPause = (option) => {
     playPauseText.textContent = options[0];
@@ -16,6 +16,7 @@ const getNextOption = (options) => {
 
 playPauseBtn.addEventListener('click', () => {
     togglePlayPause(getNextOption(options));
+    ipcRenderer.send('play-stop-server');
 });
 
 aboutBtn.addEventListener('click', () => ipcRenderer.send('open-window-about'));
