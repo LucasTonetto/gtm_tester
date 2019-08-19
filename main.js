@@ -6,7 +6,7 @@ let mainWindow = null;
 app.on('ready', () => {
     mainWindow = new BrowserWindow({
         width: 650,
-        height: 500,
+        height: 520,
         webPreferences: {
             nodeIntegration: true
         }
@@ -16,7 +16,7 @@ app.on('ready', () => {
 
     mainWindow.loadURL(`file://${__dirname}/src/client/index.html`);
 
-    Menu.setApplicationMenu(new Menu());
+    //Menu.setApplicationMenu(new Menu());
 });
 
 ipcMain.on('open-window-about', () => {

@@ -132,6 +132,10 @@ ul {
     padding-left: 0;
 }
 
+ul li * {
+    line-height: 1;
+}
+
 li {
     font-size: 18px;
 }
@@ -139,10 +143,14 @@ li {
 li p {
     margin-bottom: 0px;
     margin-top: 0px;
+    user-select: none;
+    display: inline;
+    line-height: 0.2;
 }
 
 li p:not(.insert-gtm-text) {
     font-weight: 400;
+    z-index: 2;
 }
 
 .insert-gtm-text {
@@ -153,8 +161,17 @@ li span {
     font-size: 14px;
     color: #91afdf;
     font-weight: 500;
+    line-height: 0.8;
 }
 
 li span:hover {
+    cursor: pointer;
+}
+
+.site-disabled {
+    cursor: not-allowed;
+}
+
+.site-enabled {
     cursor: pointer;
 }
