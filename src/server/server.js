@@ -3,6 +3,10 @@ const port = 3000;
 const state = ['stop', 'play'];
 let server;
 
+const getNextState = () => {
+    return state.reverse()[0];
+};
+
 const playServer = () => {
     server = http.createServer((req, resp) => {
         resp.end("Hello");
@@ -14,8 +18,7 @@ const stopServer = () => {
 };
 
 const runServer = () => {
-    const nextState = state.reverse()[0];
-    if(nextState == "play") {
+    if(getNextState() == "play") {
         playServer();
     } else {
         stopServer();
