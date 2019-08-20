@@ -1,20 +1,17 @@
 const {ipcRenderer, shell} = require('electron');
 const {nodeListMap} = require("../../utils/utils");
+const {getNextOption} = require("../../utils/utils");
 
 const aboutBtn = document.querySelector('.row.about.btn');
 const playPauseBtn = document.querySelector('.play-pause');
 const playPauseText = document.querySelector('.barra-opcoes p');
 const sites = document.querySelectorAll(".site");
 let options = ['Iniciar', 'Parar'];
-let sitesHabilitation = ['site-disabled', 'site-enabled']
+let sitesHabilitation = ['site-disabled', 'site-enabled'];
 
 const togglePlayPause = (option) => {
     playPauseText.textContent = options[0];
     playPauseBtn.setAttribute('src', `images/${options[0]}.svg`);
-}
-
-const getNextOption = (options) => {
-    return options.reverse()[0];
 }
 
 const toggleEnableDisableSites = () => {
