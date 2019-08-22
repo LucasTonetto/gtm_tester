@@ -36,7 +36,6 @@ nodeListMap(sites, (site) => {
 
 nodeListMap(gtms, (gtm) => {
     gtm.addEventListener('click', function() {
-        console.log(this);
         ipcRenderer.send('open-gtm-insertion', this.getAttribute("id"));
     });
 });

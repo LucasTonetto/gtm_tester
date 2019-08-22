@@ -1,5 +1,6 @@
 const {app, BrowserWindow, Menu, ipcMain} = require('electron');
 const runServer = require('./src/server/server');
+const insertGtmIn = require('./src/server/insertGtm');
 
 let mainWindow = null;
 
@@ -34,17 +35,21 @@ ipcMain.on('open-gtm-insertion', function() {
     const site = arguments[1];
     const windowInsertGtm = new BrowserWindow({
         width: 400,
-        height: 380,
+        height: 330,
         webPreferences: {
             nodeIntegration: true
         }
     });
     windowInsertGtm.loadURL(`file://${__dirname}/src/client/insertGtm.html`);
     windowInsertGtm.webContents.on('dom-ready', () => {
-        windowInsertGtm.webContents.send('site-name', site)
+        windowInsertGtm.webContents.send('site-name', site);
     });
 });
 
 ipcMain.on('play-stop-server', () => {
     runServer();
+});
+
+ipcMain.on('insert-gtm', (event, site, tag) => {
+    insertGtmIn(site, tag);
 });
