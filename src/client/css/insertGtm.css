@@ -56,3 +56,13 @@ a:hover {
     padding: 10px 20px;
     font-size: 18px;
 }
+
+#error {
+    color: #e32636;
+    display: none;
+}
+
+#success {
+    display: none;
+    color: #00AB66;
+}

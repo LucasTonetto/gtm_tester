@@ -9,7 +9,7 @@ const clearPage = (content) => {
 };
 
 const getSiteFiles = (siteDir) => {
-    const files = fs.readdirSync(`./src/templates/${siteDir}`, function(error, files) {
+    const files = fs.readdirSync(`./src/templates/${siteDir}`, (error, files) => {
         if (error) throw error;
         return files;
     });

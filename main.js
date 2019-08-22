@@ -1,8 +1,9 @@
 const {app, BrowserWindow, Menu, ipcMain} = require('electron');
 const runServer = require('./src/server/server');
-const insertGtmIn = require('./src/server/insertGtm');
+const insertGtmIn = require('./src/server/insertGtmInSite');
 
 let mainWindow = null;
+let windowInsertGtm = null;
 
 app.on('ready', () => {
     mainWindow = new BrowserWindow({
@@ -33,9 +34,9 @@ ipcMain.on('open-window-about', () => {
 
 ipcMain.on('open-gtm-insertion', function() {
     const site = arguments[1];
-    const windowInsertGtm = new BrowserWindow({
+    windowInsertGtm = new BrowserWindow({
         width: 400,
-        height: 330,
+        height: 355,
         webPreferences: {
             nodeIntegration: true
         }
@@ -52,4 +53,5 @@ ipcMain.on('play-stop-server', () => {
 
 ipcMain.on('insert-gtm', (event, site, tag) => {
     insertGtmIn(site, tag);
+    windowInsertGtm.webContents.send('insert-gtm-success', `Tag inserida no site ${site} com sucesso!`);
 });
