@@ -6,6 +6,7 @@ const aboutBtn = document.querySelector('.row.about.btn');
 const playPauseBtn = document.querySelector('.play-pause');
 const playPauseText = document.querySelector('.barra-opcoes p');
 const sites = document.querySelectorAll(".site");
+const gtms = document.querySelectorAll(".insert-gtm-text");
 let options = ['Iniciar', 'Parar'];
 let sitesHabilitation = ['site-disabled', 'site-enabled'];
 
@@ -30,6 +31,13 @@ nodeListMap(sites, (site) => {
         if(this.classList.contains("site-enabled")) {
             shell.openExternal('http://localhost:3000/dopetrope/index.html');
         }
+    });
+});
+
+nodeListMap(gtms, (gtm) => {
+    gtm.addEventListener('click', function() {
+        console.log(this);
+        ipcRenderer.send('open-gtm-insertion', this.getAttribute("id"));
     });
 });
 

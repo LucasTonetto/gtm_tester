@@ -30,6 +30,21 @@ ipcMain.on('open-window-about', () => {
     windowAbout.loadURL(`file://${__dirname}/src/client/about.html`);
 });
 
+ipcMain.on('open-gtm-insertion', function() {
+    const site = arguments[1];
+    const windowInsertGtm = new BrowserWindow({
+        width: 400,
+        height: 380,
+        webPreferences: {
+            nodeIntegration: true
+        }
+    });
+    windowInsertGtm.loadURL(`file://${__dirname}/src/client/insertGtm.html`);
+    windowInsertGtm.webContents.on('dom-ready', () => {
+        windowInsertGtm.webContents.send('site-name', site)
+    });
+});
+
 ipcMain.on('play-stop-server', () => {
     runServer();
 });
