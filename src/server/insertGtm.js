@@ -8,29 +8,47 @@ const clearPage = (content) => {
     return content.replace(/<script id='gtm'>.+?<\/script>/i,"");
 };
 
-const insertTag = (tag, content) => {
-    const tagClean = processTag(tag);
-    const contentClean = clearPage(content);
-    return contentClean.replace("<head>", "<head>"+tagClean);
-}
-
-const editFiles = (siteName, tag, file) => {
-    fs.readFile(`./src/templates/${siteName}/${file}`, 'utf-8', (error, data) => {
+const getSiteFiles = (siteDir) => {
+    const files = fs.readdirSync(`./src/templates/${siteDir}`, function(error, files) {
         if (error) throw error;
-        fs.writeFile(`./src/templates/${siteName}/${file}`, insertTag(tag, data), (error) => {
-            if (error) throw error;
-        });
+        return files;
+    });
+    return files;
+};
+
+const filterHtmlFiles = (files) => {
+    return files.filter(file => file.match(/.*\.html/));
+};
+
+const getFileContent = (pathFile) => {
+    const fileContent = fs.readFileSync(pathFile, 'utf-8', (error, data) => {
+        if (error) throw error;
+        return data;
+    });
+    return fileContent;
+};
+
+const editContentFile = (contentFile, tag) => {
+    const tagClean = processTag(tag);
+    const contentFileClean = clearPage(contentFile);
+    return contentFileClean.replace("<head>", "<head>"+tagClean);
+};
+
+const editFile = (pathFile, newContent) => {
+    fs.writeFileSync(pathFile, newContent, (error) => {
+        if (error) throw error;
     });
 };
 
 const insertGtmIn = (site, tag) => {
-    const siteName = site.toLowerCase();
-    fs.readdir(`./src/templates/${siteName}`, (error, files) => {
-        if (error) throw error;
-        const htmlFiles = files.filter((file) => file.match(/.*\.html/));
-        htmlFiles.map((file) => {
-            editFiles(siteName, tag, file);
-        });
+    const siteDir = site.toLowerCase();
+    const files = getSiteFiles(siteDir);
+    const htmlFiles = filterHtmlFiles(files);
+    htmlFiles.map(file => {
+        const pathFile = `./src/templates/${siteDir}/${file}`;
+        const fileContent = getFileContent(pathFile);
+        const newContent = editContentFile(fileContent, tag);
+        editFile(pathFile, newContent);
     });
 };
 
