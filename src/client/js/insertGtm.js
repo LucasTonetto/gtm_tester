@@ -29,6 +29,10 @@ ipcRenderer.on('insert-gtm-success', (event, msg) => {
     notifySuccess(msg);
 });
 
+ipcRenderer.on('insert-gtm-error', (event, msg) => {
+    notifyError(msg);
+});
+
 btnInsertGtm.addEventListener('click', (e) => {
     e.preventDefault();
     if(verifyTag(tag.value)) {

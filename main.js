@@ -52,6 +52,11 @@ ipcMain.on('play-stop-server', () => {
 });
 
 ipcMain.on('insert-gtm', (event, site, tag) => {
-    insertGtmIn(site, tag);
-    windowInsertGtm.webContents.send('insert-gtm-success', `Tag inserida no site ${site} com sucesso!`);
+    try {
+        insertGtmIn(site, tag);
+        windowInsertGtm.webContents.send('insert-gtm-success', `Tag inserida com sucesso!`);
+    } catch(error) {
+        console.log(error.message);
+        windowInsertGtm.webContents.send('insert-gtm-error', error.message);
+    }
 });
