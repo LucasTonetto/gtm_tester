@@ -1,6 +1,6 @@
 const {app, BrowserWindow, Menu, ipcMain} = require('electron');
 const runServer = require('./src/server/server');
-const insertGtmIn = require('./src/server/insertGtmInSite');
+const insertGtm = require('./src/server/insertGtmInSite');
 
 let mainWindow = null;
 let windowInsertGtm = null;
@@ -51,10 +51,10 @@ ipcMain.on('play-stop-server', () => {
     runServer();
 });
 
-ipcMain.on('insert-gtm', (event, site, tag) => {
+ipcMain.on('insert-gtm', (event, site, tags) => {
     try {
-        insertGtmIn(site, tag);
-        windowInsertGtm.webContents.send('insert-gtm-success', `Tag inserida com sucesso!`);
+        insertGtm(site, tags);
+        windowInsertGtm.webContents.send('insert-gtm-success', `Tags inseridas com sucesso!`);
     } catch(error) {
         console.log(error.message);
         windowInsertGtm.webContents.send('insert-gtm-error', error.message);

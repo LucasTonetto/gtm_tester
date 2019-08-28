@@ -28,7 +28,7 @@ h1 {
     margin-top: 10px!important;
 }
 
-#tag-gtm {
+.tag-gtm {
     width: 250px;
     height: 70px;
     resize: none;

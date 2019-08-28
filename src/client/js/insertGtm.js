@@ -1,12 +1,17 @@
 const {ipcRenderer} = require('electron');
 const title = document.querySelector('h1');
 const btnInsertGtm = document.querySelector("#insert-gtm");
-const tag = document.querySelector('textarea');
+const tagHead = document.querySelector('#tag-gtm-head');
+const tagBody = document.querySelector('#tag-gtm-body');
 const error = document.querySelector('#error');
 const success = document.querySelector('#success');
 
+const removeLineBreak = (text) => {
+    return text.replace(/\n/g, "");
+}
+
 const verifyTag = (tag) => {
-    return tag.match(/<script>.+?<\/script>/);
+    return removeLineBreak(tag).match(/(<script>.+?<\/script>)|(<noscript>.+?<\/noscript>)/);
 };
 
 const notifyError = (msg) => {
@@ -35,8 +40,8 @@ ipcRenderer.on('insert-gtm-error', (event, msg) => {
 
 btnInsertGtm.addEventListener('click', (e) => {
     e.preventDefault();
-    if(verifyTag(tag.value)) {
-        ipcRenderer.send('insert-gtm', title.textContent, tag.value);
+    if(verifyTag(tagHead.value) && verifyTag(tagBody.value)) {
+        ipcRenderer.send('insert-gtm', title.textContent, [tagHead.value, tagBody.value]);
     } else {
         notifyError('Tag inválida');
     }

@@ -1,11 +1,11 @@
 const fs = require('fs');
 
-const processTag = (tag) => {
-    return tag.replace("<script>", "<script id='gtm'>");
+const insertIdInTag = (tag) => {
+    return tag.replace(/((<script)>)|((<noscript)>)/ig, "$2$4 id='gtm'>");
 };
 
 const clearPage = (content) => {
-    return content.replace(/<script id='gtm'>.+?<\/script>/i,"");
+    return content.replace(/(<script id='gtm'>.+?<\/script>)|(<noscript id='gtm'>.+?<\/noscript>)/i,"");
 };
 
 const getSiteFiles = (siteDir) => {
@@ -28,10 +28,30 @@ const getFileContent = (pathFile) => {
     return fileContent;
 };
 
-const editContentFile = (contentFile, tag) => {
-    const tagClean = processTag(tag);
+const editContentFile = (contentFile, tags) => {
+    const tagsClean = tags.map(tag => insertIdInTag(tag));
     const contentFileClean = clearPage(contentFile);
-    return contentFileClean.replace("<head>", "<head>"+tagClean);
+    return addTags(contentFileClean, tagsClean);
+};
+
+const addTags = (content, tags) => {
+    let newContent = content;
+    tags.map(tag => {
+        if(tag.match(/<script/)) {
+            newContent = addTagHead(newContent, tag);
+        } else if (tag.match(/<noscript/)) {
+            newContent = addTagBody(newContent, tag);
+        }
+    });
+    return newContent;
+};
+
+const addTagHead = (content, tag) => {
+    return content.replace("<head>", "<head>"+tag);
+};
+
+const addTagBody = (content, tag) => {
+    return content.replace(/((<body.*?)>)/, "$1"+tag);
 };
 
 const editFile = (pathFile, newContent) => {
@@ -40,16 +60,16 @@ const editFile = (pathFile, newContent) => {
     });
 };
 
-const insertGtmIn = (site, tag) => {
+const insertGtm = async(site, tags) => {
     const siteDir = site.toLowerCase();
     const files = getSiteFiles(siteDir);
     const htmlFiles = filterHtmlFiles(files);
     htmlFiles.map(file => {
         const pathFile = `./src/templates/${siteDir}/${file}`;
         const fileContent = getFileContent(pathFile);
-        const newContent = editContentFile(fileContent, tag);
+        const newContent = editContentFile(fileContent, tags);
         editFile(pathFile, newContent);
     });
 };
 
-module.exports = insertGtmIn;
+module.exports = insertGtm;
