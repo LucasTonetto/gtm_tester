@@ -36,7 +36,7 @@ ipcMain.on('open-gtm-insertion', function() {
     const site = arguments[1];
     windowInsertGtm = new BrowserWindow({
         width: 400,
-        height: 355,
+        height: 520,
         webPreferences: {
             nodeIntegration: true
         }

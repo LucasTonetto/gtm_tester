@@ -36,6 +36,11 @@ h1 {
     font-size: 16px;
 }
 
+p {
+    margin-top: 10px;
+    margin-bottom: 0;
+}
+
 .col-btn-insert {
     margin-top: 3px!important;
 }
