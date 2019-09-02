@@ -1,4 +1,5 @@
 const {ipcRenderer} = require('electron');
+
 const title = document.querySelector('h1');
 const btnInsertGtm = document.querySelector("#insert-gtm");
 const tagHead = document.querySelector('#tag-gtm-head');
@@ -8,7 +9,7 @@ const success = document.querySelector('#success');
 
 const removeLineBreak = (text) => {
     return text.replace(/\n/g, "");
-}
+};
 
 const verifyTag = (tag) => {
     return removeLineBreak(tag).match(/(<script>.+?<\/script>)|(<noscript>.+?<\/noscript>)/);
@@ -18,13 +19,13 @@ const notifyError = (msg) => {
     error.textContent = msg;
     error.style.display = 'inline';
     success.style.display = 'none';
-}
+};
 
 const notifySuccess = (msg) => {
     success.textContent = msg;
     success.style.display = 'inline';
     error.style.display = 'none';
-}
+};
 
 ipcRenderer.on('site-name', (event, msg) => {
     title.textContent = msg.charAt(0).toUpperCase() + msg.slice(1);

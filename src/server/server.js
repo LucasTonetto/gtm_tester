@@ -1,11 +1,10 @@
-const http = require('http');
 const express = require('express');
 const path = require('path');
 const {getNextOption} = require('../utils/utils');
+const {port} = require("../config/config.json");
 
 const app = express();
 
-const port = 3000;
 const states = ['stop', 'play'];
 let server;
 

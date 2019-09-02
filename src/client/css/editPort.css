@@ -1,0 +1,49 @@
+body {
+    background-color: #edf2fa;
+}
+
+h3 {
+    text-align: center;
+}
+
+input {
+    margin: 0 auto;
+    display: block;
+    font-size: 16px;
+    padding: 5px 10px;
+}
+
+#error, #success {
+    text-align: center;
+    display: none;
+}
+
+#error {
+    color: #e32636;
+}
+
+#success {
+    color: #00AB66;
+}
+
+.col-btn-port {
+    text-align: center;
+}
+
+a {
+    text-decoration: none;
+    display: inline-block;
+    border: 2px solid #91afdf;
+    border-radius: 20px;
+}
+
+a:hover {
+    transition: background-color .3s linear;
+    background-color: #d3dff2;
+}
+
+#btn-port {
+    margin: 0 auto;
+    padding: 10px 20px;
+    font-size: 18px;
+}

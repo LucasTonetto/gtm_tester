@@ -175,3 +175,16 @@ li span:hover {
 .site-enabled {
     cursor: pointer;
 }
+
+#port {
+    text-align: center;
+    font-size: 14px;
+}
+
+#port span { 
+    text-decoration: underline;
+}
+
+#port span:hover { 
+    cursor: pointer;
+}

@@ -4,6 +4,7 @@ const insertGtm = require('./src/server/insertGtmInSite');
 
 let mainWindow = null;
 let windowInsertGtm = null;
+let editPortWindow = null;
 
 app.on('ready', () => {
     mainWindow = new BrowserWindow({
@@ -56,7 +57,18 @@ ipcMain.on('insert-gtm', (event, site, tags) => {
         insertGtm(site, tags);
         windowInsertGtm.webContents.send('insert-gtm-success', `Tags inseridas com sucesso!`);
     } catch(error) {
-        console.log(error.message);
+        console.log("D");
         windowInsertGtm.webContents.send('insert-gtm-error', error.message);
     }
+});
+
+ipcMain.on('edit-port-number', () => {
+    editPortWindow = new BrowserWindow({
+        width: 400,
+        height: 220,
+        webPreferences: {
+            nodeIntegration: true
+        }
+    });
+    editPortWindow.loadURL(`file://${__dirname}/src/client/editPort.html`);
 });

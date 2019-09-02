@@ -1,10 +1,13 @@
 const {ipcRenderer, shell} = require('electron');
 const {nodeListMap} = require("../../utils/utils");
 const {getNextOption} = require("../../utils/utils");
+const {port} = require("../../config/config.json");
 
+const portNumber = document.querySelector("#port-number");
 const aboutBtn = document.querySelector('.row.about.btn');
 const playPauseBtn = document.querySelector('.play-pause');
 const playPauseText = document.querySelector('.barra-opcoes p');
+const editPort = document.querySelector("#port span");
 const sites = document.querySelectorAll(".site");
 const gtms = document.querySelectorAll(".insert-gtm-text");
 let options = ['Iniciar', 'Parar'];
@@ -20,6 +23,10 @@ const toggleEnableDisableSites = () => {
     nodeListMap(sites, (site) => site.classList = nextOption);
 };
 
+window.onload = () => {
+    portNumber.textContent = port;
+};
+
 playPauseBtn.addEventListener('click', () => {
     togglePlayPause(getNextOption(options));
     toggleEnableDisableSites();
@@ -29,7 +36,7 @@ playPauseBtn.addEventListener('click', () => {
 nodeListMap(sites, (site) => {
     site.addEventListener('click', function() {
         if(this.classList.contains("site-enabled")) {
-            shell.openExternal('http://localhost:3000/dopetrope/index.html');
+            shell.openExternal(`http://localhost:${port}/dopetrope/index.html`);
         }
     });
 });
@@ -41,3 +48,5 @@ nodeListMap(gtms, (gtm) => {
 });
 
 aboutBtn.addEventListener('click', () => ipcRenderer.send('open-window-about'));
+
+editPort.addEventListener('click', () => ipcRenderer.send('edit-port-number'));
