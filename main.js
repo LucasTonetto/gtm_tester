@@ -2,6 +2,7 @@ const {app, BrowserWindow, Menu, ipcMain} = require('electron');
 const runServer = require('./src/server/server');
 const insertGtm = require('./src/server/insertGtmInSite');
 
+let {port} = require('./src/config/config.json');
 let mainWindow = null;
 let windowInsertGtm = null;
 let editPortWindow = null;
@@ -49,7 +50,7 @@ ipcMain.on('open-gtm-insertion', function() {
 });
 
 ipcMain.on('play-stop-server', () => {
-    runServer();
+    runServer(port);
 });
 
 ipcMain.on('insert-gtm', (event, site, tags) => {
@@ -57,7 +58,6 @@ ipcMain.on('insert-gtm', (event, site, tags) => {
         insertGtm(site, tags);
         windowInsertGtm.webContents.send('insert-gtm-success', `Tags inseridas com sucesso!`);
     } catch(error) {
-        console.log("D");
         windowInsertGtm.webContents.send('insert-gtm-error', error.message);
     }
 });
@@ -71,4 +71,9 @@ ipcMain.on('edit-port-number', () => {
         }
     });
     editPortWindow.loadURL(`file://${__dirname}/src/client/editPort.html`);
+});
+
+ipcMain.on('update-port', (event, newPort) => {
+    port = newPort;
+    mainWindow.webContents.send('update-port', newPort);
 });

@@ -1,7 +1,6 @@
 const {ipcRenderer, shell} = require('electron');
 const {nodeListMap} = require("../../utils/utils");
 const {getNextOption} = require("../../utils/utils");
-const {port} = require("../../config/config.json");
 
 const portNumber = document.querySelector("#port-number");
 const aboutBtn = document.querySelector('.row.about.btn');
@@ -12,6 +11,7 @@ const sites = document.querySelectorAll(".site");
 const gtms = document.querySelectorAll(".insert-gtm-text");
 let options = ['Iniciar', 'Parar'];
 let sitesHabilitation = ['site-disabled', 'site-enabled'];
+let {port} = require("../../config/config.json");
 
 const togglePlayPause = (option) => {
     playPauseText.textContent = options[0];
@@ -26,6 +26,11 @@ const toggleEnableDisableSites = () => {
 window.onload = () => {
     portNumber.textContent = port;
 };
+
+ipcRenderer.on('update-port', (event, newPort) => {
+    portNumber.textContent = newPort;
+    port = newPort;
+});
 
 playPauseBtn.addEventListener('click', () => {
     togglePlayPause(getNextOption(options));

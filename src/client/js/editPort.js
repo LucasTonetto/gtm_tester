@@ -1,3 +1,4 @@
+const {ipcRenderer} = require("electron");
 const {port} = require("../../config/config.json");
 const {editPort} = require("../../config/config.js");
 
@@ -32,7 +33,9 @@ btnPort.addEventListener("click", (e) => {
     e.preventDefault();
     if(verifyPort(newPortNumber.value)) {
         editPort(newPortNumber.value, `${__dirname}/../../config/config.json`);
-        successMessage("Porta alterada com sucesso!")
+        oldPortNumber.textContent = newPortNumber.value;
+        successMessage("Porta alterada com sucesso!");
+        ipcRenderer.send('update-port', newPortNumber.value);
     } else {
         errorMessage("Porta inválida!");
     }

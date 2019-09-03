@@ -1,12 +1,12 @@
 const express = require('express');
 const path = require('path');
 const {getNextOption} = require('../utils/utils');
-const {port} = require("../config/config.json");
 
 const app = express();
 
 const states = ['stop', 'play'];
 let server;
+let port;
 
 app.get("/*", function(req, res) {
     res.sendFile(path.resolve(__dirname + '../../templates' + req.url));
@@ -20,7 +20,8 @@ const stopServer = () => {
     server.close();
 };
 
-const runServer = () => {
+const runServer = (runPort) => {
+    port = runPort;
     if(getNextOption(states) == "play") {
         playServer();
     } else {
