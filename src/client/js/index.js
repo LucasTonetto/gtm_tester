@@ -14,8 +14,8 @@ let sitesHabilitation = ['site-disabled', 'site-enabled'];
 let {port} = require("../../config/config.json");
 
 const togglePlayPause = (option) => {
-    playPauseText.textContent = options[0];
-    playPauseBtn.setAttribute('src', `images/${options[0]}.svg`);
+    playPauseText.textContent = option;
+    playPauseBtn.setAttribute('src', `images/${option}.svg`);
 }
 
 const toggleEnableDisableSites = () => {
@@ -40,8 +40,9 @@ playPauseBtn.addEventListener('click', () => {
 
 nodeListMap(sites, (site) => {
     site.addEventListener('click', function() {
+        const siteName = this.textContent.toLowerCase();
         if(this.classList.contains("site-enabled")) {
-            shell.openExternal(`http://localhost:${port}/dopetrope/index.html`);
+            shell.openExternal(`http://localhost:${port}/${siteName}/index.html`);
         }
     });
 });
