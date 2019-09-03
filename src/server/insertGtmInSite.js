@@ -1,4 +1,5 @@
 const fs = require('fs');
+const {getFileContentSync, editFileSync} = require('../utils/fileManipulate');
 
 const insertIdInTag = (tag) => {
     return tag.replace(/((<script)>)|((<noscript)>)/ig, "$2$4 id='gtm'>");
@@ -18,14 +19,6 @@ const getSiteFiles = (siteDir) => {
 
 const filterHtmlFiles = (files) => {
     return files.filter(file => file.match(/.*\.html/));
-};
-
-const getFileContent = (pathFile) => {
-    const fileContent = fs.readFileSync(pathFile, 'utf-8', (error, data) => {
-        if (error) throw error;
-        return data;
-    });
-    return fileContent;
 };
 
 const editContentFile = (contentFile, tags) => {
@@ -54,21 +47,15 @@ const addTagBody = (content, tag) => {
     return content.replace(/((<body.*?)>)/, "$1"+tag);
 };
 
-const editFile = (pathFile, newContent) => {
-    fs.writeFileSync(pathFile, newContent, (error) => {
-        if (error) throw error;
-    });
-};
-
-const insertGtm = async(site, tags) => {
+const insertGtm = (site, tags) => {
     const siteDir = site.toLowerCase();
     const files = getSiteFiles(siteDir);
     const htmlFiles = filterHtmlFiles(files);
     htmlFiles.map(file => {
         const pathFile = `./src/templates/${siteDir}/${file}`;
-        const fileContent = getFileContent(pathFile);
+        const fileContent = getFileContentSync(pathFile);
         const newContent = editContentFile(fileContent, tags);
-        editFile(pathFile, newContent);
+        editFileSync(pathFile, newContent);
     });
 };
 
