@@ -1,6 +1,5 @@
 const {ipcRenderer, shell} = require('electron');
-const {nodeListMap} = require("../../utils/utils");
-const {getNextOption} = require("../../utils/utils");
+const {nodeListMap, getNextOption} = require("../../utils/utils");
 
 const portNumber = document.querySelector("#port-number");
 const aboutBtn = document.querySelector('.row.about.btn');
@@ -9,9 +8,10 @@ const playPauseText = document.querySelector('.barra-opcoes p');
 const editPort = document.querySelector("#port span");
 const sites = document.querySelectorAll(".site");
 const gtms = document.querySelectorAll(".insert-gtm-text");
-let options = ['Iniciar', 'Parar'];
-let sitesHabilitation = ['site-disabled', 'site-enabled'];
+
 let {port} = require("../../config/config.json");
+let sitesHabilitation = ['site-disabled', 'site-enabled'];
+let options = ['Iniciar', 'Parar'];
 
 const togglePlayPause = (option) => {
     playPauseText.textContent = option;
