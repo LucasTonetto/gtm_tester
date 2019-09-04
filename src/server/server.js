@@ -1,6 +1,6 @@
-const express = require('express');
-const path = require('path');
-const {getNextOption} = require('../utils/utils');
+const express           = require('express');
+const path              = require('path');
+const {getNextOption}   = require('../utils/utils');
 
 const app = express();
 

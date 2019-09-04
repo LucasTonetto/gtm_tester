@@ -1,11 +1,11 @@
 const {ipcRenderer} = require('electron');
 
-const title = document.querySelector('h1');
-const btnInsertGtm = document.querySelector("#insert-gtm");
-const tagHead = document.querySelector('#tag-gtm-head');
-const tagBody = document.querySelector('#tag-gtm-body');
-const error = document.querySelector('#error');
-const success = document.querySelector('#success');
+const title         = document.querySelector('h1');
+const btnInsertGtm  = document.querySelector("#insert-gtm");
+const tagHead       = document.querySelector('#tag-gtm-head');
+const tagBody       = document.querySelector('#tag-gtm-body');
+const error         = document.querySelector('#error');
+const success       = document.querySelector('#success');
 
 const removeLineBreak = (text) => {
     return text.replace(/\n/g, "");

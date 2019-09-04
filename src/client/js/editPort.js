@@ -1,12 +1,12 @@
 const {ipcRenderer} = require("electron");
-const {port} = require("../../config/config.json");
-const {editPort} = require("../../config/config.js");
+const {port}        = require("../../config/config.json");
+const {editPort}    = require("../../config/config.js");
 
 const oldPortNumber = document.querySelector("#old-port-number");
 const newPortNumber = document.querySelector("#new-port-number");
-const success = document.querySelector("#success");
-const error = document.querySelector("#error");
-const btnPort = document.querySelector("#btn-port");
+const success       = document.querySelector("#success");
+const error         = document.querySelector("#error");
+const btnPort       = document.querySelector("#btn-port");
 
 const verifyPort = (newPort) => {
     return !/[^\d]/.test(newPort);
