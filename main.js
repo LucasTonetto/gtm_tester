@@ -6,6 +6,7 @@ let {port} = require('./src/config/config.json');
 let mainWindow = null;
 let windowInsertGtm = null;
 let editPortWindow = null;
+let windowAbout = null;
 
 app.on('ready', () => {
     mainWindow = new BrowserWindow({
@@ -24,29 +25,37 @@ app.on('ready', () => {
 });
 
 ipcMain.on('open-window-about', () => {
-    const windowAbout = new BrowserWindow({
-        width: 600,
-        height: 540,
-        webPreferences: {
-            nodeIntegration: true
-        }
-    });
-    windowAbout.loadURL(`file://${__dirname}/src/client/about.html`);
+    if(!windowAbout) {
+        windowAbout = new BrowserWindow({
+            width: 600,
+            height: 540,
+            webPreferences: {
+                nodeIntegration: true
+            }
+        });
+        windowAbout.loadURL(`file://${__dirname}/src/client/about.html`);
+    } else {
+        windowAbout.focus();
+    }
 });
 
 ipcMain.on('open-gtm-insertion', function() {
-    const site = arguments[1];
-    windowInsertGtm = new BrowserWindow({
-        width: 400,
-        height: 520,
-        webPreferences: {
-            nodeIntegration: true
-        }
-    });
-    windowInsertGtm.loadURL(`file://${__dirname}/src/client/insertGtm.html`);
-    windowInsertGtm.webContents.on('dom-ready', () => {
-        windowInsertGtm.webContents.send('site-name', site);
-    });
+    if(!windowInsertGtm) {
+        const site = arguments[1];
+        windowInsertGtm = new BrowserWindow({
+            width: 400,
+            height: 520,
+            webPreferences: {
+                nodeIntegration: true
+            }
+        });
+        windowInsertGtm.loadURL(`file://${__dirname}/src/client/insertGtm.html`);
+        windowInsertGtm.webContents.on('dom-ready', () => {
+            windowInsertGtm.webContents.send('site-name', site);
+        });
+    } else {
+        windowInsertGtm.focus();
+    }
 });
 
 ipcMain.on('play-stop-server', () => {
@@ -63,14 +72,18 @@ ipcMain.on('insert-gtm', (event, site, tags) => {
 });
 
 ipcMain.on('edit-port-number', () => {
-    editPortWindow = new BrowserWindow({
-        width: 400,
-        height: 220,
-        webPreferences: {
-            nodeIntegration: true
-        }
-    });
-    editPortWindow.loadURL(`file://${__dirname}/src/client/editPort.html`);
+    if(!editPortWindow) {
+        editPortWindow = new BrowserWindow({
+            width: 400,
+            height: 220,
+            webPreferences: {
+                nodeIntegration: true
+            }
+        });
+        editPortWindow.loadURL(`file://${__dirname}/src/client/editPort.html`);
+    } else {
+        editPortWindow.focus();
+    }
 });
 
 ipcMain.on('update-port', (event, newPort) => {
