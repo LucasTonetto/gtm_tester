@@ -154,7 +154,9 @@ li p:not(.insert-gtm-text) {
 }
 
 .insert-gtm-text {
-    margin-top: -15px;
+    display: block;
+    margin-top: -3px;
+    margin-bottom: 20px;
 }
 
 li span {
@@ -170,10 +172,19 @@ li span:hover {
 
 .site-disabled {
     cursor: not-allowed;
+    color: gray;
 }
 
 .site-enabled {
     cursor: pointer;
+    color: black;
+}
+
+.copyright {
+    display: block;
+    font-size: 12px;
+    margin-bottom: 10px;
+    margin-top: -15px;
 }
 
 #port {
