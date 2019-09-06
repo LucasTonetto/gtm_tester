@@ -141,8 +141,6 @@ li {
 }
 
 li p {
-    margin-bottom: 0px;
-    margin-top: 0px;
     user-select: none;
     display: inline;
     line-height: 0.2;
@@ -188,6 +186,7 @@ li span:hover {
 }
 
 #port {
+    margin-top: 20px;
     text-align: center;
     font-size: 14px;
 }
