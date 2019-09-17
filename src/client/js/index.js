@@ -1,13 +1,14 @@
 const {ipcRenderer, shell}          = require('electron');
 const {nodeListMap, getNextOption}  = require("../../utils/utils");
 
-const portNumber    = document.querySelector("#port-number");
-const aboutBtn      = document.querySelector('.row.about.btn');
-const playPauseBtn  = document.querySelector('.play-pause');
-const playPauseText = document.querySelector('.barra-opcoes p');
-const editPort      = document.querySelector("#port span");
-const sites         = document.querySelectorAll(".site");
-const gtms          = document.querySelectorAll(".insert-gtm-text");
+const portNumber     = document.querySelector("#port-number");
+const aboutBtn       = document.querySelector('.row.about.btn');
+const playPauseBtn   = document.querySelector('.play-pause');
+const playPauseText  = document.querySelector('.barra-opcoes p');
+const editPort       = document.querySelector("#port span");
+const linksCopyright = document.querySelectorAll(".copyright");
+const sites          = document.querySelectorAll(".site");
+const gtms           = document.querySelectorAll(".insert-gtm-text");
 
 let {port} = require("../../config/config.json");
 let sitesHabilitation = ['site-disabled', 'site-enabled'];
@@ -53,6 +54,14 @@ nodeListMap(gtms, (gtm) => {
     });
 });
 
-aboutBtn.addEventListener('click', () => ipcRenderer.send('open-window-about'));
+nodeListMap(linksCopyright, (linkCopyright) => {
+    linkCopyright.addEventListener('click', function(e) {
+        e.preventDefault();
+        shell.openExternal(this.querySelector('a').getAttribute('href'));
+    });
+});
+
 
 editPort.addEventListener('click', () => ipcRenderer.send('edit-port-number'));
+
+aboutBtn.addEventListener('click', () => ipcRenderer.send('open-window-about'));
