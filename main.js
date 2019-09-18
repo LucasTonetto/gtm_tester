@@ -67,7 +67,8 @@ ipcMain.on('insert-gtm', (event, site, tags) => {
         insertGtm(site, tags);
         windowInsertGtm.webContents.send('insert-gtm-success', `Tags inseridas com sucesso!`);
     } catch(error) {
-        windowInsertGtm.webContents.send('insert-gtm-error', error.message);
+        console.log(error.message);
+        windowInsertGtm.webContents.send('insert-gtm-error', "Diretório não encontrado!");
     }
 });
 
