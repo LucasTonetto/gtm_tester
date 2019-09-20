@@ -34,6 +34,7 @@ ipcMain.on('open-window-about', () => {
             }
         });
         windowAbout.loadURL(`file://${__dirname}/src/client/about.html`);
+        windowAbout.on('closed', () => windowAbout = null);
     } else {
         windowAbout.focus();
     }
@@ -53,6 +54,7 @@ ipcMain.on('open-gtm-insertion', function() {
         windowInsertGtm.webContents.on('dom-ready', () => {
             windowInsertGtm.webContents.send('site-name', site);
         });
+        windowInsertGtm.on('closed', () => windowInsertGtm = null);
     } else {
         windowInsertGtm.focus();
     }
@@ -82,6 +84,7 @@ ipcMain.on('edit-port-number', () => {
             }
         });
         editPortWindow.loadURL(`file://${__dirname}/src/client/editPort.html`);
+        editPortWindow.on('closed', () => editPortWindow = null);
     } else {
         editPortWindow.focus();
     }

@@ -1,4 +1,5 @@
 const fs = require('fs');
+const path = require('path');
 const {getFileContentSync, editFileSync} = require('../utils/fileManipulate');
 
 const insertIdInTag = (tag) => {
@@ -10,7 +11,7 @@ const clearPage = (content) => {
 };
 
 const getSiteFiles = (siteDir) => {
-    const files = fs.readdirSync(`./src/templates/${siteDir}`, (error, files) => {
+    const files = fs.readdirSync(path.join(__dirname, `\\..\\templates\\${siteDir}`), (error, files) => {
         if (error) throw error;
         return files;
     });
@@ -44,7 +45,7 @@ const addTagHead = (content, tag) => {
 };
 
 const addTagBody = (content, tag) => {
-    return content.replace(/((<body.*?)>)/, "$1"+tag);
+    return content.replace(/<noscript.+?<\/noscript>/, ).replace(/((<body.*?)>)/, "$1"+tag);
 };
 
 const insertGtm = (site, tags) => {
@@ -52,7 +53,7 @@ const insertGtm = (site, tags) => {
     const files = getSiteFiles(siteDir);
     const htmlFiles = filterHtmlFiles(files);
     htmlFiles.map(file => {
-        const pathFile = `./src/templates/${siteDir}/${file}`;
+        const pathFile = path.join(__dirname, `\\..\\templates\\${siteDir}\\${file}`);
         const fileContent = getFileContentSync(pathFile);
         const newContent = editContentFile(fileContent, tags);
         editFileSync(pathFile, newContent);
