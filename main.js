@@ -11,7 +11,7 @@ let windowAbout = null;
 app.on('ready', () => {
     mainWindow = new BrowserWindow({
         width: 650,
-        height: 520,
+        height: 530,
         webPreferences: {
             nodeIntegration: true
         }
@@ -28,7 +28,7 @@ ipcMain.on('open-window-about', () => {
     if(!windowAbout) {
         windowAbout = new BrowserWindow({
             width: 600,
-            height: 540,
+            height: 570,
             webPreferences: {
                 nodeIntegration: true
             }
@@ -44,7 +44,7 @@ ipcMain.on('open-gtm-insertion', function() {
         const site = arguments[1];
         windowInsertGtm = new BrowserWindow({
             width: 400,
-            height: 535,
+            height: 570,
             webPreferences: {
                 nodeIntegration: true
             }
@@ -76,7 +76,7 @@ ipcMain.on('edit-port-number', () => {
     if(!editPortWindow) {
         editPortWindow = new BrowserWindow({
             width: 400,
-            height: 220,
+            height: 270,
             webPreferences: {
                 nodeIntegration: true
             }
