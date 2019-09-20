@@ -21,7 +21,7 @@ app.on('ready', () => {
 
     mainWindow.loadURL(`file://${__dirname}/src/client/index.html`);
 
-    //Menu.setApplicationMenu(new Menu());
+    Menu.setApplicationMenu(new Menu());
 });
 
 ipcMain.on('open-window-about', () => {
@@ -44,7 +44,7 @@ ipcMain.on('open-gtm-insertion', function() {
         const site = arguments[1];
         windowInsertGtm = new BrowserWindow({
             width: 400,
-            height: 520,
+            height: 535,
             webPreferences: {
                 nodeIntegration: true
             }
