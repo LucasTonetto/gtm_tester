@@ -26,4 +26,4 @@ const htmlManipulate = (site, callback, callbackArg) => {
     });
 };
 
-module.exports = htmlManipulate;
+module.exports = {getSiteFiles, filterHtmlFiles, htmlManipulate};

@@ -1,4 +1,5 @@
-const htmlManipulate = require('./htmlManipulate');
+const {getFileContentSync} = require('../utils/fileManipulate');
+const path = require('path');
 
 const jQueryTag = '<script type="text/javascript" src="js/jquery.min.js"></script>\n';
 const dataLayerTag = '<script type="text/javascript" src="js/dataLayer.js"></script>\n';
@@ -14,6 +15,9 @@ const removeDefaultDataLayer = (fileContent) => {
     return fileContent.replace(dataLayerTag, '');
 }
 
-module.exports = {insertDefaultDataLayer, removeDefaultDataLayer};
+const dataLayerEnabled = () => {
+    const fileContent = getFileContentSync(path.join(__dirname, '\\..\\templates\\ecommerce\\index.html'));
+    return fileContent.match(dataLayerTag);
+}
 
-htmlManipulate('ecommerce', removeDefaultDataLayer);
+module.exports = {insertDefaultDataLayer, removeDefaultDataLayer, dataLayerEnabled};

@@ -1,18 +1,21 @@
 const {app, BrowserWindow, Menu, ipcMain} = require('electron');
 const runServer = require('./src/server/server');
-const gtmManipulate = require('./src/server/gtmManipulate');
-const htmlManipulate = require('./src/server/htmlManipulate');
+const {htmlManipulate} = require('./src/server/htmlManipulate');
+const {insertGtm, removeGtmById} = require('./src/server/gtmManipulate');
+const {insertDefaultDataLayer, removeDefaultDataLayer} = require('./src/server/dataLayerManipulate');
 
 let {port} = require('./src/config/config.json');
+
 let mainWindow = null;
 let windowInsertGtm = null;
+let windowRemoveGtm = null;
 let editPortWindow = null;
 let windowAbout = null;
 
 app.on('ready', () => {
     mainWindow = new BrowserWindow({
         width: 650,
-        height: 530,
+        height: 600,
         webPreferences: {
             nodeIntegration: true
         }
@@ -61,19 +64,57 @@ ipcMain.on('open-gtm-insertion', function() {
     }
 });
 
+ipcMain.on('open-gtm-removal', function(){
+    if (!windowRemoveGtm){
+        const site = arguments[1];
+        windowRemoveGtm = new BrowserWindow({
+            width: 400,
+            height: 390,
+            webPreferences: {
+                nodeIntegration: true
+            }
+        });
+        windowRemoveGtm.loadURL(`file://${__dirname}/src/client/removeGtm.html`);
+        windowRemoveGtm.webContents.on('dom-ready', () => {
+            windowRemoveGtm.webContents.send('site-name', site);
+        });
+        windowRemoveGtm.on('closed', () => windowRemoveGtm = null);
+    } else {
+        windowRemoveGtm.focus();
+    }
+})
+
 ipcMain.on('play-stop-server', () => {
     runServer(port);
 });
 
 ipcMain.on('insert-gtm', (event, site, tags) => {
     try {
-        htmlManipulate(site, gtmManipulate.insertGtm, tags);
+        htmlManipulate(site, insertGtm, tags);
         windowInsertGtm.webContents.send('insert-gtm-success', `Tags inseridas com sucesso!`);
     } catch(error) {
         console.log(error.message);
         windowInsertGtm.webContents.send('insert-gtm-error', "Diretório não encontrado!");
     }
 });
+
+ipcMain.on('remove-gtm', (event, site, gtmId) => {
+    try {
+        htmlManipulate(site, removeGtmById, gtmId);
+        windowRemoveGtm.webContents.send('remove-gtm-success', 'GTM removido com sucesso!');
+    } catch(error) {
+        windowRemoveGtm.webContents.send('remove-gtm-error', 'Diretório não encontrado!')
+    }
+})
+
+ipcMain.on('enable-datalayer', (event, action) => {
+    try {
+        if (action.match('Ativar')) htmlManipulate('ecommerce', insertDefaultDataLayer);
+        else htmlManipulate('ecommerce', removeDefaultDataLayer);
+    } catch(error) {
+        console.log(error.message);
+    }
+})
 
 ipcMain.on('edit-port-number', () => {
     if(!editPortWindow) {
