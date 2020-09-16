@@ -9,6 +9,7 @@ let {port} = require('./src/config/config.json');
 let mainWindow = null;
 let windowInsertGtm = null;
 let windowRemoveGtm = null;
+let windowDatalayerOptions = null;
 let editPortWindow = null;
 let windowAbout = null;
 
@@ -44,7 +45,7 @@ ipcMain.on('open-window-about', () => {
     }
 });
 
-ipcMain.on('open-gtm-insertion', function() {
+ipcMain.on('open-gtm-insertion', function(){
     if(!windowInsertGtm) {
         const site = arguments[1];
         windowInsertGtm = new BrowserWindow({
@@ -84,12 +85,33 @@ ipcMain.on('open-gtm-removal', function(){
     }
 })
 
+ipcMain.on('open-datalayer-options', function(){
+    if (!windowDatalayerOptions){
+        const site = arguments[1];
+        windowDatalayerOptions = new BrowserWindow({
+            width: 400,
+            height: 520,
+            webPreferences: {
+                nodeIntegration: true
+            }
+        });
+        windowDatalayerOptions.loadURL(`file:\\${__dirname}/src/client/datalayerOptions.html`);
+        windowDatalayerOptions.webContents.on('dom-ready', () => {
+            windowDatalayerOptions.webContents.send('site-name', site);
+        });
+        windowDatalayerOptions.on('closed', () => windowDatalayerOptions = null);
+    } else {
+        windowDatalayerOptions.focus();
+    }
+})
+
 ipcMain.on('play-stop-server', () => {
     runServer(port);
 });
 
 ipcMain.on('insert-gtm', (event, site, tags) => {
     try {
+        // insertGtm(site, tags);
         htmlManipulate(site, insertGtm, tags);
         windowInsertGtm.webContents.send('insert-gtm-success', `Tags inseridas com sucesso!`);
     } catch(error) {

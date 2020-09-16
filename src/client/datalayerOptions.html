@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Opções de dataLayer</title>
+    <link href="vendors/css/simple-grid.min.css" rel="stylesheet">
+    <link href="css/gtmDatalayer.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/dataLayerOptions.css">
+</head>
+<body>
+    <section>
+        <div class="container container-logo">
+            <div class="row">
+                <img src="images/logo.png" class="logo">
+            </div>
+        </div>
+        <h1></h1>
+        <div class='container-datalayer'>
+            <p>DataLayer padrão</p>
+            <label class="toggle">
+                <input type="checkbox" id="enable-default-datalayer">
+                <span class="slider"></span>
+            </label>
+        </div>
+        <div class='container-datalayer'>
+            <p>DataLayer personalizado</p>
+            <label class="toggle">
+                <input type="checkbox" id="enable-custom-datalayer">
+                <span class="slider"></span>
+            </label>
+        </div>
+        <div class='container-datalayer'>
+            <p>Adicionar dataLayer</p>
+            <input type="file" id="file">
+            <span id="error">Erro</span>
+            <span id="success">Sucesso</span>
+            <div class="col-12 col-btn-insert">
+                <a href="#" id="upload-datalayer" class='gen-button'>Upload</a>
+            </div>
+        </div>
+    </section>
+
+    <script>require('./js/removeGtm')</script>
+</body>

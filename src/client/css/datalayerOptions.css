@@ -1,0 +1,65 @@
+.container-datalayer {
+    margin-bottom: 20px;
+}
+
+.container-datalayer p {
+    font-weight: 500;
+}
+
+.toggle {
+    position: relative;
+    display: inline-block;
+    width: 70px;
+    height: 28px;
+    margin-top: 5px;
+}
+
+.slider {
+    position: absolute;
+    content: "ON";
+    cursor: pointer;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: #91afdf;
+    transition: 0.4s;
+    border-radius: 14px;
+}
+
+.slider::before {
+    position: absolute;
+    content: "OFF";
+    height: 24px;
+    width: 50px;
+    left: 2px;
+    top: 2px;
+    background-color: #edf2fa;
+    transition: 0.4s;
+    border-radius: 12px;
+    align-content: space-between;
+}
+
+.toggle input:checked + .slider {
+    background-color: #91afdf;
+}
+
+.toggle input:checked + .slider::before {
+    content: "ON";
+    transform: translateX(16px);
+}
+
+#file::-webkit-file-upload-button {
+    visibility: hidden;
+}
+
+#file::before {
+    content: "(Escolher arquivo)";
+    color: #91afdf;
+    cursor: pointer;
+}
+
+.gen-button {
+    font-size: 13px;
+    padding: 5px 10px; 
+}
