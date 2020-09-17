@@ -30,17 +30,21 @@
                 <input type="checkbox" id="enable-custom-datalayer">
                 <span class="slider"></span>
             </label>
-        </div>
-        <div class='container-datalayer'>
-            <p>Adicionar dataLayer</p>
-            <input type="file" id="file">
+            <p class="input-file"><span>(Escolher arquivo)</span></p>
             <span id="error">Erro</span>
             <span id="success">Sucesso</span>
-            <div class="col-12 col-btn-insert">
-                <a href="#" id="upload-datalayer" class='gen-button'>Upload</a>
+            <div class="row">
+                <div class="col-12 col-btn-insert">
+                    <a href="#" id="insert-datalayer" class='gen-button disabled-btn'>Adicionar</a>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12 col-btn-insert">
+                    <a href="#" id="remove-datalayer" class='gen-button'>Excluir</a>
+                </div>
             </div>
         </div>
     </section>
 
-    <script>require('./js/removeGtm')</script>
+    <script>require('./js/datalayerOptions')</script>
 </body>

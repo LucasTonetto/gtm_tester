@@ -14,7 +14,14 @@ const editFileSync = (pathFile, newContent) => {
     });
 };
 
+const copyFileSync = (pathFile, destPath) =>{
+    fs.copyFileSync(pathFile, destPath, (error) => {
+        if(error) throw error;
+    })
+}
+
 module.exports = {
-    "getFileContentSync": getFileContentSync,
-    "editFileSync": editFileSync
+    getFileContentSync,
+    editFileSync,
+    copyFileSync
 };

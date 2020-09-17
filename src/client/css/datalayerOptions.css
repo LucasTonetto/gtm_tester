@@ -63,3 +63,23 @@
     font-size: 13px;
     padding: 5px 10px; 
 }
+
+.input-file {
+    display: block;
+    margin-bottom: -6px;
+}
+
+.input-file span {
+    font-size: 14px;
+    color: #91afdf;
+    font-weight: 500;
+    line-height: 0.8;
+}
+
+.input-file span:hover {
+    cursor: pointer;
+}
+
+.disabled-btn {
+    cursor: not-allowed;
+}
