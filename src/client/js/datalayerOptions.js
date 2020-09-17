@@ -1,4 +1,5 @@
-const { ipcRenderer, remote } = require('electron');
+const { ipcRenderer, remote }   = require('electron');
+const {notifyError, clearMsg}   = require('./siteToolsGeneral');
 
 const title             = document.querySelector('h1');
 const btnDefault        = document.querySelector('#enable-default-datalayer');
@@ -7,15 +8,9 @@ const btnCustomCursor   = document.querySelector('#enable-custom-datalayer + spa
 const inputFile         = document.querySelector('.input-file span');
 const btnInsert         = document.querySelector('#insert-datalayer');
 const btnRemove         = document.querySelector('#remove-datalayer');
-const error             = document.querySelector('#error');
-const success           = document.querySelector('#success');
 
 var filePath            = '';
 const disabledClass     = 'disabled-btn';
-
-ipcRenderer.on('site-name', (event, msg) => {
-    title.textContent = msg.charAt(0).toUpperCase() + msg.slice(1);
-});
 
 ipcRenderer.on('verified-site', (event, datalayerEnabled, emptyCustomDatalayerParam) => {
     btnDefault.checked = datalayerEnabled[0];
@@ -66,12 +61,13 @@ inputFile.addEventListener('click', (e) => {
             if (fileType.match(/js|mjs/)) {
                 btnInsert.addEventListener('click', insertCustomEvent);
                 btnInsert.classList.remove(disabledClass);
+                clearMsg();
             } else {
                 btnInsert.removeEventListener('click', insertCustomEvent);
                 btnInsert.classList.add(disabledClass);
+                notifyError('Insira um arquivo .js');
             }
-        }
-        
+        }  
     })
 });
 
