@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>GTM Tester</title>
+    <link href="vendors/css/simple-grid.min.css" rel="stylesheet">
+    <link href="css/index.css" rel="stylesheet">
+</head>
+<body>
+    
+    <section>
+        <div class="about-container">
+                <div class="row about btn">
+                    <div class="col-2 about-btn">
+                        <img src="images/insert.svg" class="insert">
+                    </div>
+                    <div class="col-10 about-text">
+                        <p>Sobre</p>
+                    </div>
+                </div>
+            </div>
+    
+        <div class="container">
+            <div class="row">
+                <div class="col-12 div-img">
+                    <img src="images/logo.png" class="logo">
+                </div>
+            </div>
+        </div>
+    
+        <div class="container">
+            <div class="row opcoes">
+                <div class="col-2 barra-btn">
+                    <img src="images/Iniciar.svg" class="play-pause btn">
+                </div>
+                <div class="col-9 barra-opcoes">
+                    <p>Iniciar</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="container">
+            <div class="row insert-gtm">
+                <div class="col-12">
+                    <ul>
+                        <li>
+                            <p class="site site-disabled">Dopetrope</p>
+                            <p site="dopetrope" class="site-options insert-gtm-text"><br><span>(Inserir GTM)</span></p>
+                            <p site="dopetrope" class="site-options remove-gtm-text"><br><span>(Remover GTM)</span></p>
+                            <p class="copyright"><a href="https://html5up.net/dopetrope">Copyright</a></p>
+                        </li>
+                        <li>
+                            <p class="site site-disabled">Ecommerce</p>
+                            <p site="ecommerce" class="site-options insert-gtm-text"><br><span>(Inserir GTM)</span></p>
+                            <p site="ecommerce" class="site-options remove-gtm-text"><br><span>(Remover GTM)</span></p>
+                            <p site="ecommerce" class="site-options datalayer-options"><br><span>(Opções de dataLayer)</span></p>
+                            <p class="copyright"><a href="https://github.com/chekromul/uikit-ecommerce-template">Copyright</a></p>
+                        </li>
+                        <!-- <li> -->
+                            <!-- <p class="site site-disabled">SPA</p> -->
+                            <!-- <p id="spa" class="insert-gtm-text"><br><span>(Inserir GTM)</span></p> -->
+                        <!-- </li> -->
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <p id="port">Editar: <span>Porta <span id="port-number"></span></p>
+    </section>
+
+    <script>require('./js/index')</script>
+
+</body>
+</html>

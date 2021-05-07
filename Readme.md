@@ -10,14 +10,14 @@ A aplicação GTM Tester foi criada com o objetivo de disponibilizar um ambiente
 Para efetuar o build da aplicação, é necessária a instalação do **electron-packager**. Tendo o electron-packager instalado, basta utilziar o comando:
 
 ```
-electron-packager ./ gtm-tester --platform=win32 --arch=x64 --icon=icon/icon
+npm run package-win
 ```
 
 
 
 ## Iniciando a aplicação
 
-Para iniciar a aplicação, é necessário iniciar o arquivo executável gerado no build da aplicação.
+Para iniciar a aplicação, é necessário iniciar o arquivo executável **gtm-tester.exe** dentro do diretório de build e da pasta do seu sistema operacional, no caso do windows, o arquivo está localizado em: **/build/gtm-tester-win32-x64/gtm-tester.exe**.
 
 A tela inicial será aberta, nela podemos clicar no botão "Iniciar" para iniciar a aplicação, inserir e remover o GTM dos sites e clicar no nome dos sites para abrir em seu navegador padrão.
 

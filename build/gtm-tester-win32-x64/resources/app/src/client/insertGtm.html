@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Insert GTM</title>
+    <link href="vendors/css/simple-grid.min.css" rel="stylesheet">
+    <link href="css/siteToolsGerenal.css" rel="stylesheet">
+</head>
+<body>
+    <section>
+        <div class="container container-logo">
+            <div class="row">
+                <img src="images/logo.png" class="logo">
+            </div>
+        </div>
+        <h1></h1>
+        <p>Insira aqui o código do <b>&#60;head&#62;</b></p>
+        <div class="container">
+            <div class="row">
+                <div class="col-12 text">
+                    <textarea id="tag-gtm-head" class="tag-gtm" placeholder="Insira a tag do seu GTM aqui..."></textarea>
+                </div>
+            </div>
+        </div>
+        <p>Insira aqui o código do <b>&#60;body&#62;</b></p>
+        <div class="container">
+            <div class="row">
+                <div class="col-12 text">
+                    <textarea id="tag-gtm-body" class="tag-gtm" placeholder="Insira a tag do seu GTM aqui..."></textarea>
+                </div>
+            </div>
+        </div>
+        <span id="error">Erro</span>
+        <span id="success">Sucesso</span>
+        <div class="container">
+            <div class="row">
+                <div class="col-12 col-btn-insert">
+                    <a href="#" id="insert-gtm" class="gen-button">Inserir GTM</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script>require('./js/siteToolsGeneral')</script>
+    <script>require('./js/insertGtm')</script>
+    
+</body>
+</html>

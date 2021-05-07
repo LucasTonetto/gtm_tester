@@ -1,0 +1,200 @@
+/*d3dff2 claro */
+body {
+    background-color: #edf2fa;
+}
+
+.about {
+    float: right;
+    margin-top: 10px;
+}
+
+.row.about {
+    margin-right: 10px;
+    width: auto;
+    border: 2px solid #91afdf;
+    border-radius: 10px;
+    z-index: 2;
+}
+
+.about-btn {
+    height: inherit;
+    width: 70px!important;
+    float: right!important;
+}
+
+.about-text {
+    float: right!important;
+    width: 100px;
+    height: inherit;
+    text-align: right;
+}
+
+.no-width {
+    width: 100%!important;
+}
+
+.btn:hover {
+    cursor: pointer;
+}
+
+.div-img {
+    margin-top: -40px!important;
+    margin-bottom: 15px!important;
+}
+
+.logo {
+    margin: 0 auto 0 auto;
+    display: block;
+    width: 100px;
+    height: auto;
+}
+
+.opcoes, .about {
+    height: 80px;
+}
+
+.opcoes div, .about div {
+    margin: 0!important;
+}
+
+.play-pause, .insert {
+    margin: 0 auto;
+    display: block;
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.barra-btn {
+    background-color: #91afdf;
+    height: inherit;
+    width: 20%;
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+}
+.barra-opcoes p, .about-text p {
+    line-height: 0.6;
+    font-weight: 500;
+    font-size: 30px;
+    padding-left: 20px;
+}
+
+.barra-opcoes {
+    width: 80%;
+    background-color: #d3dff2;
+    height: inherit;
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+}
+
+.insert-gtm {
+    top: 15px;
+    height: auto;
+    text-align: center;
+    margin: 0 auto;
+    border: 2px solid #91afdf;
+    border-radius: 10px;
+    width: 200px;
+}
+
+.insert-gtm div {
+    height: inherit;
+}
+
+.insert {
+    width: 50px;
+    height: auto;
+    margin: 0 auto;
+    display: block;
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.area-img {
+    display: block;
+    width: 60px;
+}
+
+.area-texto {
+    width: 150px;
+}
+.area-texto p {
+    font-weight: 200;
+    font-size: 25px;
+    line-height: 1.2;
+}
+
+ul {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    list-style: none;
+    padding-left: 0;
+}
+
+ul li * {
+    line-height: 1;
+}
+
+li {
+    font-size: 18px;
+}
+
+li p {
+    user-select: none;
+    display: inline;
+    line-height: 0.2;
+}
+
+li p:not(.insert-gtm-text) {
+    font-weight: 400;
+    z-index: 2;
+}
+
+.site-options {
+    display: block;
+    margin-top: -3px;
+    margin-bottom: 8px;
+}
+
+li span {
+    font-size: 14px;
+    color: #91afdf;
+    font-weight: 500;
+    line-height: 0.8;
+}
+
+li span:hover {
+    cursor: pointer;
+}
+
+.site-disabled {
+    cursor: not-allowed;
+    color: gray;
+}
+
+.site-enabled {
+    cursor: pointer;
+    color: black;
+}
+
+.copyright {
+    display: block;
+    font-size: 12px;
+    margin-bottom: 10px;
+    margin-top: 0px;
+}
+
+#port {
+    margin-top: 20px;
+    text-align: center;
+    font-size: 14px;
+}
+
+#port span { 
+    text-decoration: underline;
+}
+
+#port span:hover { 
+    cursor: pointer;
+}

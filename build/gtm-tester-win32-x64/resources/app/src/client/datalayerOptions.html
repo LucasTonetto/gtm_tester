@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Opções de dataLayer</title>
+    <link href="vendors/css/simple-grid.min.css" rel="stylesheet">
+    <link href="css/siteToolsGerenal.css" rel="stylesheet">
+    <link href="css/dataLayerOptions.css" rel="stylesheet">
+</head>
+<body>
+    <section>
+        <div class="container container-logo">
+            <div class="row">
+                <img src="images/logo.png" class="logo">
+            </div>
+        </div>
+        <h1></h1>
+        <div class='container-datalayer'>
+            <p>DataLayer padrão</p>
+            <label class="toggle">
+                <input type="checkbox" id="enable-default-datalayer">
+                <span class="slider"></span>
+            </label>
+        </div>
+        <div class='container-datalayer'>
+            <p>DataLayer personalizado</p>
+            <label class="toggle">
+                <input type="checkbox" id="enable-custom-datalayer">
+                <span class="slider"></span>
+            </label>
+            <p class="input-file"><span>(Escolher arquivo)</span></p>
+            <div class="row">
+                <div class="col-12 col-btn-insert">
+                    <a href="#" id="insert-datalayer" class='gen-button disabled-btn'>Adicionar</a>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12 col-btn-insert">
+                    <a href="#" id="remove-datalayer" class='gen-button'>Excluir</a>
+                </div>
+            </div>
+            <span id="error">Erro</span>
+            <span id="success">Sucesso</span>
+        </div>
+    </section>
+    <script>require('./js/siteToolsGeneral')</script>
+    <script>require('./js/datalayerOptions')</script>
+</body>
