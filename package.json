@@ -11,7 +11,7 @@
   "author": "Lucas Tonetto Firmo",
   "license": "ISC",
   "dependencies": {
-    "electron": "^1.6.1",
+    "electron": "^13.6.6",
     "electron-packager": "^14.1.1",
     "express": "^4.17.1"
   }
